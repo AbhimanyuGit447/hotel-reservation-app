@@ -4,7 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ReservationListComponent } from './reservation-list/reservation-list.component';
 import { ReservationFormComponent } from './reservation-form/reservation-form.component';
 
-const routes: Routes = [
+ const routes: Routes = [
   {
     path : "",
     component : HomeComponent
@@ -15,6 +15,10 @@ const routes: Routes = [
   },
   {
     path : "new",
+    component : ReservationFormComponent
+  },
+  {
+    path : "edit/:id",
     component : ReservationFormComponent
   }
 ];

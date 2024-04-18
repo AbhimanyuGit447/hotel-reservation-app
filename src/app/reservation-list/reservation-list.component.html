@@ -1,1 +1,42 @@
-<p>reservation-list works!</p>
+
+
+<app-home></app-home>
+
+
+<h2>Reservation List</h2>
+
+<div style="display: flex; flex-direction: column; ">
+
+  <ul style="display: flex; flex-direction: column;" *ngIf="reservations.length > 0 else noReservation">
+    <li style="display: flex; flex-direction: column;  " *ngFor="let reservation of reservations">
+      <div style="background-color: rgb(136, 255, 114);" >
+        Guest : {{reservation.guestName}} <br>
+        Email : {{reservation.guestEmail}}<br>
+        Room No : {{reservation.roomNumber}}<br>
+        Check-In : {{reservation.checkInDate}}<br>
+        Check-Our : {{reservation.checkOutDate}}<br><br>
+
+        <div class="btn btn-primary" style="display: flex; flex-direction: row; justify-content: space-between;" >
+          <button (click)="deleteReservations(reservation.id)">Delete</button>
+
+          <button [routerLink]="['/edit',reservation.id]">EDIT</button>
+        </div>
+      </div>
+
+
+      <br><br><br>
+
+    </li>
+
+
+
+
+  </ul>
+
+  <br><br><br>
+</div>
+
+<ng-template #noReservation>
+  No Resrevation Available
+</ng-template>
+
