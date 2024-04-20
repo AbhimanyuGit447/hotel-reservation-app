@@ -29,10 +29,13 @@ export class ReservationFormComponent implements OnInit {
 
     let id = this.activatedRoute.snapshot.paramMap.get('id')
     if(id){
-      let reservation = this.reservationService.getReservation(id);
-      if(reservation){
-        this.reservationForm.patchValue(reservation);
-      }
+      let reservation = this.reservationService.getReservation(id).subscribe(
+        res => {
+          if(res){
+            this.reservationForm.patchValue(res);
+          }
+        }
+      )
 
     }
 
@@ -45,9 +48,17 @@ export class ReservationFormComponent implements OnInit {
       let id = this.activatedRoute.snapshot.paramMap.get('id')
       if(id){
         //update
-        this.reservationService.updateReservation(id , reservation);
+        this.reservationService.updateReservation(id , reservation).subscribe(
+          () => {
+            console.log("update request");
+
+          }
+        )
       }else{
-        this.reservationService.addReservation(reservation);
+        this.reservationService.addReservation(reservation).subscribe(() => {
+          console.log('adding');
+
+        })
       }
       this.router.navigateByUrl("/list")
     }
